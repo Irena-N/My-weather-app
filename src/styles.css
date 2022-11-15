@@ -1,0 +1,59 @@
+body {
+  min-height: 100vh;
+  max-width: 700px;
+  background-color: papayawhip;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  padding-top: 1rem;
+  font-weight: normal;
+  font-size: normal;
+  color: darkslategray;
+}
+p {
+  font-weight: normal;
+  font-size: normal;
+  color: darkslategray;
+  font-size: 1.5rem;
+}
+.clock {
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 200px;
+}
+.center {
+  text-align: center;
+}
+.date {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: auto;
+  max-width: 65%;
+  height: auto;
+  max-height: 10rem;
+}
+
+.icon-one {
+  font-size: 4rem;
+}
+.icon-week {
+  font-size: 2rem;
+}
+#temp {
+  color: darkslategray;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+
+#current-location-button {
+  float: left;
+  margin-top: 0.5rem;
+  background-color: rgb(91, 198, 148);
+  color: darkslategray;
+}
