@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <form id="form-input" class="border p-1 mt-2 rounded shadow">
+            <input
+              type="text"
+              placeholder="SEARCH"
+              class="form-control"
+              autofocus="on"
+              value="SEARCH"
+              id="city-input"
+            />
+          </form>
+          <div class="row">
+            <div class="col-12">
+              <button
+                class="btn btn-success shadow-sm w-50px"
+                id="current-location-button"
+              >
+                Current
+              </button>
+            </div>
+            <div class="col-6">
+              <h1>
+                <!-- San Francisco,CA -->
+                <div id="city"></div>
+              </h1>
+              <p>Today will be warm!</p>
+              <h2>
+                <span id="main-temp"></span>
+                <!-- <span class="units">
+                  <a href="#" id="celsius-link">°C</a> |
+                  <a href="#" id="fahrenheit-link">°F</a>
+                </span> -->
+              </h2>
+              <span class="icon-one">⛅️</span>
+              <h3>HI/LOW</h3>
+            </div>
+            <div class="col-6 center">
+              <input type="datetime-local" class="date" id="date-today" />
+              <img src="images/clock.jpg" class="clock" alt="earth clock" />
+            </div>
+          </div>
+          <hr />
+          <div class="row" id="temp">
+            <div class="col-2">
+              MON
+              <br />
+              55 °F
+              <br />
+              <span class="icon-week">☁️</span>
+            </div>
+            <div class="col-2">
+              TUE
+              <br />
+              65 °F
+              <br />
+              <span class="icon-week">⛅️</span>
+            </div>
+            <div class="col-2">
+              WED
+              <br />
+              70 °F
+              <br />
+              <span class="icon-week">☀️</span>
+            </div>
+            <div class="col-2">
+              THU
+              <br />
+              59 °F
+              <br />
+              <span class="icon-week">⛈️</span>
+            </div>
+            <div class="col-2">
+              FRI
+              <br />
+              52 °F
+              <br />
+              <span class="icon-week">🌧️</span>
+            </div>
+            <div class="col-2">
+              SAT
+              <br />
+              62 °F
+              <br />
+              <span class="icon-week">🌧️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
