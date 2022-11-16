@@ -51,6 +51,7 @@ function showPosition(position) {
 }
 
 let currentLocation = document.querySelector("#current-location-button");
+currentLocation.click();
 
 function getCurrentPosition(event) {
   event.preventDefault();
