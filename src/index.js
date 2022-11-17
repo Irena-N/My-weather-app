@@ -51,11 +51,18 @@ function showPosition(position) {
 }
 
 let currentLocation = document.querySelector("#current-location-button");
-//currentLocation.click();
+
+function handleError(e) {
+  alert(`Run into error ${e}`);
+}
 
 function getCurrentPosition(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(showPosition);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, handleError);
+  } else {
+    alert("Cannot identify your current location");
+  }
 }
 
 currentLocation.addEventListener("click", getCurrentPosition);
