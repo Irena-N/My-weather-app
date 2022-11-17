@@ -32,6 +32,11 @@ function search(event) {
 form.addEventListener("submit", search);
 
 function showTemp(response) {
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
   let temperature = Math.round(response.data.main.temp);
   let showtemper = document.querySelector("#main-temp");
   showtemper.innerHTML = `${temperature}℃`;
