@@ -4,7 +4,9 @@ body {
   background-color: papayawhip;
   margin: 0 auto;
 }
-
+.card-body {
+  background-image: url("https://img.freepik.com/free-photo/water-drops-glass_1323-179.jpg?w=740&t=st=1668670927~exp=1668671527~hmac=ba8fbf254c89c4c6f4622afa18eddbeb74595493be673b558e0ca447082e325c");
+}
 h1,
 h2,
 h3 {
@@ -18,6 +20,19 @@ p {
   font-size: normal;
   color: darkslategray;
   font-size: 1.5rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li:first-letter {
+  text-transform: capitalize;
 }
 .clock {
   width: auto;
@@ -56,4 +71,7 @@ a {
   margin-top: 0.5rem;
   background-color: rgb(91, 198, 148);
   color: darkslategray;
+}
+.units:hover {
+  cursor: pointer;
 }
