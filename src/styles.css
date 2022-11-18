@@ -75,3 +75,7 @@ a {
 .units:hover {
   cursor: pointer;
 }
+
+.raindrops-image {
+  float: right;
+}
