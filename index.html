@@ -18,18 +18,20 @@
     <div class="card">
       <div class="card-body">
         <div class="container">
-          <form id="form-input" class="border p-1 mt-2 rounded shadow">
-            <input
-              type="text"
-              placeholder="SEARCH"
-              class="form-control"
-              autofocus="on"
-              value="SEARCH"
-              id="city-input"
-            />
-          </form>
           <div class="row">
-            <div class="col-12">
+            <div class="col-10">
+              <form id="form-input" class="border p-1 mt-2 rounded shadow">
+                <input
+                  type="text"
+                  placeholder="SEARCH"
+                  class="form-control"
+                  autofocus="on"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </form>
+            </div>
+            <div class="col-2">
               <button
                 class="btn btn-success shadow-sm w-50px"
                 id="current-location-button"
@@ -37,30 +39,36 @@
                 Current
               </button>
             </div>
+          </div>
+          <div class="row">
             <div class="col-6">
               <h1>
-                <!-- San Francisco,CA -->
                 <div id="city"></div>
               </h1>
               <p>Today will be warm!</p>
               <h2>
                 <span id="main-temp"></span>
-                <!-- <span class="units">
-                  <a href="#" id="celsius-link">°C</a> |
-                  <a href="#" id="fahrenheit-link">°F</a>
-                </span> -->
+                <span class="units">
+                  <a id="celsius-link">°C</a> |
+                  <a id="fahrenheit-link">°F</a>
+                </span>
               </h2>
               <div class="current-weather">
-                <!-- <span class="icon-one">⛅️</span> -->
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/3222/3222675.png"
                   alt=""
                   class="float-left"
-                  width="130"
+                  width="150"
                   id="icon"
                 />
               </div>
-              <h3>HI/LOW</h3>
+              <h3>
+                <ul>
+                  <li id="description"></li>
+                  <li>Humidity: <span id="humidity"></span>%</li>
+                  <li>Wind: <span id="wind"></span> m/h</li>
+                </ul>
+              </h3>
             </div>
             <div class="col-6 center">
               <input type="datetime-local" class="date" id="date-today" />
