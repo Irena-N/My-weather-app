@@ -12,38 +12,74 @@ let days = [
 let day = days[now.getDay()];
 let hours = now.getHours();
 let minutes = now.getMinutes();
+let activeUnit = "C";
 
 let p = document.querySelector("p");
-p.innerHTML = `${day} ${hours}:${minutes > 9 ? minutes : `0${minutes}`}`;
-
 let form = document.querySelector("#form-input");
 let cityInput = document.querySelector("#city-input");
+let cityPlaceHolder = document.querySelector("#city");
+let temperaturePlaceHolder = document.querySelector("#main-temp");
+let iconElement = document.querySelector("#icon");
+let descriptionElement = document.querySelector("#description");
+let humidityElement = document.querySelector("#humidity");
+let windElement = document.querySelector("#wind");
+let currentLocation = document.querySelector("#current-location-button");
+let celsiusLink = document.querySelector("#celsius-link");
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
 
-function search(event) {
+p.innerHTML = `${day} ${hours}:${minutes > 9 ? minutes : `0${minutes}`}`;
+
+function displayCity(city) {
+  cityPlaceHolder.innerHTML = `${city}`;
+}
+
+function formSubmitHandler(event) {
   event.preventDefault();
+  search(cityInput.value);
+  //cityInput.value = "";
+}
+
+function search(city) {
   let apiKey = "9cb72bec958f8fb02391985ed7b219d2";
-  let cityInput = document.querySelector("#city-input");
-  let city = document.querySelector("#city");
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
-  city.innerHTML = `${cityInput.value}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  displayCity(city);
   axios.get(apiUrl).then(showTemp);
 }
-form.addEventListener("submit", search);
+
+form.addEventListener("submit", formSubmitHandler);
 
 function showTemp(response) {
-  let iconElement = document.querySelector("#icon");
+  console.log("Showing temperature on html page", response);
   iconElement.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  let temperature = Math.round(response.data.main.temp);
-  let showtemper = document.querySelector("#main-temp");
-  showtemper.innerHTML = `${temperature}℃`;
+  celsiusTemperature = Math.round(response.data.main.temp);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
 
-  let city = document.querySelector("#city");
-  city.innerHTML = response.data.name;
+  displayTemperature("C");
+  displayCity(response.data.name);
 }
+
+function displayTemperature(newActiveUnit) {
+  activeUnit = newActiveUnit;
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.remove("active");
+  let temp = 0;
+  if (activeUnit === "F") {
+    temp = celsiusTemperature;
+    celsiusLink.classList.add("active");
+  } else {
+    temp = (celsiusTemperature * 9) / 5 + 32;
+    fahrenheitLink.classList.add("active");
+  }
+  temperaturePlaceHolder.innerHTML = Math.round(`${temp}`);
+}
+
 function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -55,19 +91,20 @@ function showPosition(position) {
   axios.get(apiUrl).then(showTemp);
 }
 
-let currentLocation = document.querySelector("#current-location-button");
-
-function handleError(e) {
-  alert(`Run into error ${e}`);
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  displayTemperature("C");
 }
 
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  displayTemperature("F");
+}
+
+let celsiusTemperature = null;
 function getCurrentPosition(event) {
   event.preventDefault();
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, handleError);
-  } else {
-    alert("Cannot identify your current location");
-  }
+  navigator.geolocation.getCurrentPosition(showPosition);
 }
 
 currentLocation.addEventListener("click", getCurrentPosition);
@@ -80,3 +117,8 @@ function showCurrentCity(response) {
     response.data.name);
   axios.get(apiUrl).then(showCurrentCity);
 }
+
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("San Francisco");
