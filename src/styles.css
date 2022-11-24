@@ -6,6 +6,8 @@ body {
 }
 .card-body {
   background-image: url("https://img.freepik.com/free-photo/water-drops-glass_1323-179.jpg?w=740&t=st=1668670927~exp=1668671527~hmac=ba8fbf254c89c4c6f4622afa18eddbeb74595493be673b558e0ca447082e325c");
+  width: 100%;
+  opacity: 0.9;
 }
 h1,
 h2,
@@ -13,64 +15,73 @@ h3 {
   padding-top: 1rem;
   font-weight: normal;
   font-size: normal;
-  color: darkslategray;
+  color: rgb(12, 46, 46);
 }
 p {
   font-weight: normal;
-  font-size: normal;
-  color: darkslategray;
+  color: rgb(12, 46, 46);
   font-size: 1.5rem;
 }
 
+.globe {
+  background-image: url(/images/globe.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  hightlight: violet;
+}
 ul {
-  margin: 0;
+  margin: 5rem 0;
   padding: 0;
 }
 li {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-weight: 500;
+  color: rgb(248, 74, 118);
+  font-size: x-large;
 }
+
 li:first-letter {
   text-transform: capitalize;
 }
-.clock {
-  width: auto;
-  max-width: 200px;
-  height: auto;
-  max-height: 200px;
-}
+
 .center {
   text-align: center;
-}
-.date {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  width: auto;
-  max-width: 65%;
-  height: auto;
-  max-height: 10rem;
+  vertical-align: middle;
 }
 
-.icon-one {
-  font-size: 4rem;
-}
 .icon-week {
-  font-size: 2rem;
+  font-size: 1rem;
+  padding-bottom: 0rem;
+  text-align: left;
 }
-#temp {
-  color: darkslategray;
+#weekly-forecast {
   text-align: center;
+}
+
+#temp {
+  color: rgb(12, 46, 46);
+  text-align: center;
+}
+
+#current-location-button {
+  float: left;
+  margin-top: 1rem;
+  background-color: rgb(91, 198, 148);
+  color: rgb(12, 46, 46);
 }
 a {
   text-decoration: none;
 }
 
-#current-location-button {
-  float: left;
-  margin-top: 0.5rem;
-  background-color: rgb(91, 198, 148);
-  color: darkslategray;
+.temp-unit-link {
+  color: rgb(12, 46, 46);
+}
+
+.temp-unit-link.active,
+.temp-unit-link:hover {
+  color: blue;
 }
 .units:hover {
   cursor: pointer;

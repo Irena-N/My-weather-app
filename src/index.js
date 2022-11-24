@@ -26,8 +26,50 @@ let windElement = document.querySelector("#wind");
 let currentLocation = document.querySelector("#current-location-button");
 let celsiusLink = document.querySelector("#celsius-link");
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
+let weeklyForecast = document.querySelector("#weekly-forecast");
 
 p.innerHTML = `${day} ${hours}:${minutes > 9 ? minutes : `0${minutes}`}`;
+
+function dayOfWeek(seconds) {
+  let nameOfDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  let date = new Date(seconds * 1000);
+  let dayOfWeek = date.getDay();
+  return nameOfDays[dayOfWeek];
+}
+
+function getForecast(coordinates) {
+  console.log("getting forecast for", coordinates);
+  let apiKey = "9cb72bec958f8fb02391985ed7b219d2";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(function (response) {
+    let dateData = response.data.daily.slice(1, 7);
+
+    let forecastData = dateData.map((daily) => ({
+      day: dayOfWeek(daily.dt),
+      temp: Math.round(daily.temp.day),
+      icon: daily.weather[0].icon,
+    }));
+
+    displayForecast(forecastData);
+  });
+}
+
+function displayForecast(forecastData) {
+  let forecastHtml = "";
+  forecastData.forEach(function ({ day, temp, icon }) {
+    forecastHtml += `
+      <div class="col-2">
+        ${day}
+        <br />
+        ${temp}°F
+        <br />
+        <img class="icon-week" src="http://openweathermap.org/img/wn/${icon}@2x.png"> 
+        </div>
+    `;
+  });
+
+  weeklyForecast.innerHTML = forecastHtml;
+}
 
 function displayCity(city) {
   cityPlaceHolder.innerHTML = `${city}`;
@@ -61,21 +103,25 @@ function showTemp(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
   displayTemperature("C");
-  displayCity(response.data.name);
+  // displayCity(response.data.name);
+  getForecast(response.data.coord);
 }
 
 function displayTemperature(newActiveUnit) {
   activeUnit = newActiveUnit;
 
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.remove("active");
+  console.log("displayTemperature with units", newActiveUnit);
+  let activeClassName = "active";
+  celsiusLink.classList.remove(activeClassName);
+  fahrenheitLink.classList.remove(activeClassName);
+
   let temp = 0;
   if (activeUnit === "F") {
     temp = celsiusTemperature;
-    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.add(activeClassName);
   } else {
     temp = (celsiusTemperature * 9) / 5 + 32;
-    fahrenheitLink.classList.add("active");
+    celsiusLink.classList.add(activeClassName);
   }
   temperaturePlaceHolder.innerHTML = Math.round(`${temp}`);
 }
@@ -93,12 +139,12 @@ function showPosition(position) {
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  displayTemperature("C");
+  displayTemperature("F");
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
-  displayTemperature("F");
+  displayTemperature("C");
 }
 
 let celsiusTemperature = null;

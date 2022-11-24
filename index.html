@@ -49,90 +49,45 @@
               <h2>
                 <span id="main-temp"></span>
                 <span class="units">
-                  <a id="celsius-link">°C</a> |
-                  <a id="fahrenheit-link">°F</a>
+                  <a class="temp-unit-link" id="celsius-link">°C</a> |
+                  <a clsss="temp-unit-link" id="fahrenheit-link">°F</a>
                 </span>
               </h2>
               <div class="current-weather">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/3222/3222675.png"
+                  src="http://openweathermap.org/img/wn/50d@2x.png"
                   alt=""
                   class="float-left"
-                  width="150"
+                  width="120"
                   id="icon"
                 />
               </div>
-              <h3>
-                <ul>
-                  <li id="description"></li>
-                  <li>Humidity: <span id="humidity"></span>%</li>
-                  <li>Wind: <span id="wind"></span> m/h</li>
-                </ul>
-              </h3>
             </div>
-            <div class="col-6 center">
-              <input type="datetime-local" class="date" id="date-today" />
-              <img src="images/clock.jpg" class="clock" alt="earth clock" />
+            <div class="col-6 center globe">
+              <ul>
+                <li>Daily Conditions:</li>
+                <li id="description"></li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> m/h</li>
+              </ul>
             </div>
           </div>
           <hr />
-          <div class="row" id="temp">
-            <div class="col-2">
-              MON
-              <br />
-              55 °F
-              <br />
-              <span class="icon-week">☁️</span>
-            </div>
-            <div class="col-2">
-              TUE
-              <br />
-              65 °F
-              <br />
-              <span class="icon-week">⛅️</span>
-            </div>
-            <div class="col-2">
-              WED
-              <br />
-              70 °F
-              <br />
-              <span class="icon-week">☀️</span>
-            </div>
-            <div class="col-2">
-              THU
-              <br />
-              59 °F
-              <br />
-              <span class="icon-week">⛈️</span>
-            </div>
-            <div class="col-2">
-              FRI
-              <br />
-              52 °F
-              <br />
-              <span class="icon-week">🌧️</span>
-            </div>
-            <div class="col-2">
-              SAT
-              <br />
-              62 °F
-              <br />
-              <span class="icon-week">🌧️</span>
-            </div>
-          </div>
+          <div class="row" id="weekly-forecast"></div>
         </div>
       </div>
     </div>
     <script src="src/index.js"></script>
     <small>
       <a href="https://github.com/Irena-N/My-weather-app" target="_blank"
-        >Open-sourced code</a
+        >Open-sourced code </a
       >by Irena Naneva
     </small>
-     <small class="raindrops-image">
+    <small class="raindrops-image">
       <a
         href="https://www.freepik.com/free-photo/water-drops-glass_1150906.htm#query=weather%20background&position=18&from_view=keyword"
-        > Image by jigsawstocker</a
+      >
+        Image by jigsawstocker</a
       >
       on Freepik</small
     >
